@@ -1,71 +1,108 @@
-class LinkedList {
+class Node {
 	constructor(value, nextNode) {
-        if (this.nextNode === undefined || this.nextNode === null) {
-            console.log(nextNode);
-        }
-
-        /*
-            Head ?
-        */
+		this.value = value;
+		this.nextNode = nextNode;
 	}
 }
 
-class Node {
-	constructor(value, nextNode) {
+class LinkedList {
+	/*constructor(value, nextNode) {
 		if (value !== null) {
-            if (nextNode === null) {
-                this.value = value;
-                this.nextNode = nextNode;
-                this.nextNode.nextNode = null;
-            } else {
-                this.value = value;
-                this.nextNode = nextNode;
-            }
+			if (nextNode === null) {
+				this.value = value;
+				this.nextNode = nextNode;
+			} else {
+				this.nextNode = nextNode;
+				let temp = this.nextNode;
+				if (temp.nextNode === null || temp.nextNode === undefined) {
+					return new Node(value, (temp.nextNode = null));
+				} else {
+					while (temp !== null || temp !== undefined) {
+						temp = temp.nextNode;
+					}
+					this.value = value;
+					temp.nextNode = null;
 
-			
+					return new Node(this.value, temp.nextNode);
+				}
+			}
 		} else {
-            this.value = null;
-		    this.nextNode = null;
-        }
-		
-	}
+			this.value = null;
+			this.nextNode = null;
+		}
+
+		new Node(this.value, this.nextNode);
+	}*/
 
 	// End of list
 	append(value) {
-		while (this.nextNode !== null) {
-			if (this.nextNode.nextNode === null || this.nextNode.nextNode === undefined) {
-				return new Node(value, null);
-			} else {
-				this.nextNode = this.nextNode.nextNode;
-			}
+		console.log("Appending...");
+
+		if (this.nextNode === null || this.nextNode === undefined) {
+			return new Node(value, null);
+		}
+
+		let temp = this.nextNode;
+
+		while (temp !== null || temp !== undefined) {
+			temp = temp.nextNode;
+		}
+
+		if (this.nextNode.nextNode === null || this.nextNode.nextNode === undefined) {
+			return new Node(value, null);
+		} else {
+			temp = temp.nextNode;
+			return new Node(value, temp);
 		}
 	}
 
 	// Start of list
-	prepend(value) {}
-
-    get size() {}
-
-    get head() {}
-
-    get tail() {}
-
-    at(index) {}
-
-    //set pop() {}
-
-    contains(value) {}
-
-    find (value) {}
-
-    toString() {
-        //while (this.nextNode)
+	prepend(value) {
+        console.log("Prepending...");
+        
+        new Node(value, null);
     }
+
+	get size() {}
+
+	get head() {}
+
+	get tail() {}
+
+	at(index) {}
+
+	//set pop() {}
+
+	contains(value) {}
+
+	find(value) {}
+
+	get toString() {
+		console.log("Converting toString...");
+
+		let string = "";
+		let temp = this;
+		while (temp != null) {
+			string += "( " + temp.value + " ) -> ";
+            temp = temp.nextNode;
+		}
+		//temp = temp.value;
+		if (temp === null || temp === undefined) {
+			string += null;
+		} else {
+			string += temp + " (This shouldn't happen!)";
+		}
+
+		console.log("toString:", string);
+	}
 }
 
-let prova1 = new Node("1", "prova");
-console.log(prova1.nextNode);
-console.log(prova1.append("ciao"));
-console.log(new Node("apple", "frutta1"));
-console.log(new Node(null, null));
-console.log(prova1.toString());
+let prova0 = new LinkedList();
+prova0.append("prova2");
+prova0.prepend("prova1");
+//prova0.Node.append = "prova3";
+//console.log(prova0.nextNode);
+//console.log(prova0.append("ciao"));
+//console.log(new Node("apple", "frutta1"));
+//console.log(new Node(null, null));
+prova0.toString;
