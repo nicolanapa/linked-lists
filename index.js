@@ -77,7 +77,21 @@ function tail(list) {
 	return console.log(current.value);
 }
 
-function at(index) {}
+// Returns the node (value) at a specific index of a list
+// Working
+function at(list, index) {
+	console.log("Returning your node at", index);
+
+	let current = list;
+	for (let i = 0; i < index; i++) {
+		if (current.next === null || current.next === undefined) {
+			return console.log("Overflow!");
+		}
+		current = current.next;
+	}
+
+	return console.log(current.value);
+}
 
 function pop() {}
 
@@ -104,20 +118,22 @@ function toString(list) {
 
 function test() {
 	let prova0 = null;
-	prova0 = append(prova0, 4);
-	prova0 = prepend(prova0, 3);
-	prova0 = prepend(prova0, 2);
+	prova0 = append(prova0, "4a");
+	prova0 = prepend(prova0, "3c");
+	prova0 = prepend(prova0, "2b");
 
 	head(prova0);
 	toString(prova0);
 
-	prova0 = append(prova0, 5);
+	prova0 = append(prova0, "5d");
 	head(prova0);
 	toString(prova0);
 
 	size(prova0);
 
 	tail(prova0);
+
+	at(prova0, 1);
 }
 
 test();
