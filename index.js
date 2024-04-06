@@ -53,7 +53,7 @@ function size(list) {
 		current = current.next;
 	}
 
-	return console.log(i);
+	return i;
 }
 
 // Returns the head (first node) of a list
@@ -61,7 +61,7 @@ function size(list) {
 function head(list) {
 	console.log("Returning head (", list.value, ")");
 
-	return console.log(list.value);
+	return list.value;
 }
 
 // Returns the tail (last node) of a list
@@ -74,7 +74,7 @@ function tail(list) {
 		current = current.next;
 	}
 
-	return console.log(current.value);
+	return current.value;
 }
 
 // Returns the node (value) at a specific index of a list
@@ -90,7 +90,7 @@ function at(list, index) {
 		current = current.next;
 	}
 
-	return console.log(current.value);
+	return current.value;
 }
 
 // Removes the last element/node from a list
@@ -109,7 +109,26 @@ function pop(list) {
 	return current;
 }
 
-function contains(value) {}
+// Returns true if a list contains a given value, otherwise false
+// Working
+function contains(list, value) {
+	console.log("Checking if it contains:", value);
+
+	let current = list;
+
+	while (current.next !== null) {
+		if (current.value === value) {
+			return true;
+		}
+		current = current.next;
+	}
+
+	if (current.value === value) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 function find(value) {}
 
@@ -127,7 +146,7 @@ function toString(list) {
 	}
 
 	string += null;
-	return console.log(string);
+	return string;
 }
 
 function test() {
@@ -136,17 +155,19 @@ function test() {
 	prova0 = prepend(prova0, "3c");
 	prova0 = prepend(prova0, "2b");
 	prova0 = append(prova0, "5d");
-	head(prova0);
+	console.log(head(prova0));
 
-	toString(prova0);
+	console.log(toString(prova0));
+	console.log(contains(prova0, "5d"));
 	pop(prova0);
-	toString(prova0);
+	console.log(toString(prova0));
 
-	size(prova0);
+	console.log(size(prova0));
 
-	tail(prova0);
+	console.log(tail(prova0));
 
-	at(prova0, 1);
+	console.log(at(prova0, 1));
+	console.log(contains(prova0, "5d"));
 }
 
 test();
