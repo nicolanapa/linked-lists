@@ -130,7 +130,30 @@ function contains(list, value) {
 	}
 }
 
-function find(value) {}
+// Returns the index of the node containing a given value, otherwise null
+// Working
+function find(list, value) {
+	console.log("Finding:", value);
+
+	let i = 0;
+	let current = list;
+
+	while (current.next !== null) {
+		i += 1;
+
+		if (current.value === value) {
+			return i;
+		}
+		current = current.next;
+	}
+
+	if (current.value === value) {
+		i += 1;
+		return i;
+	} else {
+		return null;
+	}
+}
 
 // Return the whole list to a string readable format
 // Working
@@ -156,18 +179,31 @@ function test() {
 	prova0 = prepend(prova0, "2b");
 	prova0 = append(prova0, "5d");
 	console.log(head(prova0));
+	console.log();
 
 	console.log(toString(prova0));
+	console.log();
+
 	console.log(contains(prova0, "5d"));
+	console.log();
+	console.log(find(prova0, "5d"));
+	console.log();
+
 	pop(prova0);
 	console.log(toString(prova0));
+	console.log();
 
 	console.log(size(prova0));
+	console.log();
 
 	console.log(tail(prova0));
+	console.log();
 
 	console.log(at(prova0, 1));
+	console.log();
 	console.log(contains(prova0, "5d"));
+	console.log();
+	console.log(find(prova0, "5d"));
 }
 
 test();
