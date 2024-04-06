@@ -18,6 +18,7 @@ function append(list, value) {
 		list = newNode;
 	} else {
 		let last = list;
+
 		while (last.next !== null) {
 			last = last.next;
 		}
@@ -39,7 +40,6 @@ function prepend(list, value) {
 	return newNode;
 }
 
-
 // Returns the size of a list
 // Working
 function size(list) {
@@ -47,14 +47,16 @@ function size(list) {
 
 	let i = 0;
 	let current = list;
+
 	while (current !== null) {
 		i += 1;
 		current = current.next;
 	}
-	console.log(i);
+
+	return console.log(i);
 }
 
-// Returns the head of a list
+// Returns the head (first node) of a list
 // Working
 function head(list) {
 	console.log("Returning head (", list.value, ")");
@@ -62,7 +64,17 @@ function head(list) {
 	return console.log(list.value);
 }
 
-function tail() {}
+// Returns the tail (last node) of a list
+function tail(list) {
+	console.log("Returning tail...");
+	let current = list;
+
+	while (current.next !== null) {
+		current = current.next;
+	}
+
+	return console.log(current.value);
+}
 
 function at(index) {}
 
@@ -79,12 +91,14 @@ function toString(list) {
 
 	let string = "";
 	let current = list;
+
 	while (current !== null) {
 		string += "( " + current.value + " ) -> ";
 		current = current.next;
 	}
+
 	string += null;
-	console.log(string);
+	return console.log(string);
 }
 
 function test() {
@@ -101,6 +115,8 @@ function test() {
 	toString(prova0);
 
 	size(prova0);
+
+	tail(prova0);
 }
 
 test();
