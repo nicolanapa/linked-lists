@@ -51,7 +51,6 @@ function size(list) {
 		i += 1;
 		current = current.next;
 	}
-	//i += 1;
 	console.log(i);
 }
 
