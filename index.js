@@ -39,7 +39,21 @@ function prepend(list, value) {
 	return newNode;
 }
 
-function size() {}
+
+// Returns the size of a list
+// Working
+function size(list) {
+	console.log("Calculating size...");
+
+	let i = 0;
+	let current = list;
+	while (current !== null) {
+		i += 1;
+		current = current.next;
+	}
+	//i += 1;
+	console.log(i);
+}
 
 // Returns the head of a list
 // Working
@@ -86,6 +100,8 @@ function test() {
 	prova0 = append(prova0, 5);
 	head(prova0);
 	toString(prova0);
+
+	size(prova0);
 }
 
 test();
