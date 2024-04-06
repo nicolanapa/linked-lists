@@ -65,6 +65,7 @@ function head(list) {
 }
 
 // Returns the tail (last node) of a list
+// Working
 function tail(list) {
 	console.log("Returning tail...");
 	let current = list;
