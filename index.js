@@ -3,14 +3,14 @@ class Node {
 		this.value = value;
 		this.next = null;
 
-		console.log("Node:", this.value);
+		//console.log("Node:", this.value);
 	}
 }
 
 // Appends it at the end of a list
 // Working
 function append(list, value) {
-	console.log("Appending...");
+	console.log("Appending", value);
 
 	let newNode = new Node(value);
 
@@ -31,7 +31,7 @@ function append(list, value) {
 // Prepends it at the start of a list
 // Working
 function prepend(list, value) {
-	console.log("Prepending...");
+	console.log("Prepending", value);
 
 	let newNode = new Node(value);
 	newNode.next = list;
@@ -44,7 +44,7 @@ function size() {}
 // Returns the head of a list
 // Working
 function head(list) {
-	console.log("Returning head...");
+	console.log("Returning head (", list.value, ")");
 
 	return console.log(list.value);
 }
@@ -62,7 +62,7 @@ function find(value) {}
 // Return the whole list to a string readable format
 // Working
 function toString(list) {
-	console.log("Converting toString...");
+	console.log("Converting toString" /*, JSON.stringify(list, null, 4)*/);
 
 	let string = "";
 	let current = list;
