@@ -1,7 +1,7 @@
 class Node {
 	constructor(value) {
 		this.value = value;
-		this.next = null;
+		this.nextNode = null;
 
 		//console.log("Node:", this.value);
 	}
@@ -12,18 +12,18 @@ class Node {
 function append(list, value) {
 	console.log("Appending", value);
 
-	let newNode = new Node(value);
+	let new_node = new Node(value);
 
 	if (list === null) {
-		list = newNode;
+		list = new_node;
 	} else {
 		let last = list;
 
-		while (last.next !== null) {
-			last = last.next;
+		while (last.nextNode !== null) {
+			last = last.nextNode;
 		}
 
-		last.next = newNode;
+		last.nextNode = new_node;
 	}
 
 	return list;
@@ -34,10 +34,10 @@ function append(list, value) {
 function prepend(list, value) {
 	console.log("Prepending", value);
 
-	let newNode = new Node(value);
-	newNode.next = list;
+	let new_node = new Node(value);
+	new_node.nextNode = list;
 
-	return newNode;
+	return new_node;
 }
 
 // Returns the size of a list
@@ -50,7 +50,7 @@ function size(list) {
 
 	while (current !== null) {
 		i += 1;
-		current = current.next;
+		current = current.nextNode;
 	}
 
 	return i;
@@ -70,8 +70,8 @@ function tail(list) {
 	console.log("Returning tail...");
 	let current = list;
 
-	while (current.next !== null) {
-		current = current.next;
+	while (current.nextNode !== null) {
+		current = current.nextNode;
 	}
 
 	return current.value;
@@ -84,10 +84,10 @@ function at(list, index) {
 
 	let current = list;
 	for (let i = 0; i < index; i++) {
-		if (current.next === null || current.next === undefined) {
+		if (current.nextNode === null || current.nextNode === undefined) {
 			return console.log("Overflow!");
 		}
-		current = current.next;
+		current = current.nextNode;
 	}
 
 	return current.value;
@@ -99,12 +99,12 @@ function pop(list) {
 	console.log("Removing last element...");
 	let current = list;
 
-	while (current.next.next !== null) {
-		current = current.next;
+	while (current.nextNode.nextNode !== null) {
+		current = current.nextNode;
 	}
 
-	console.log("Removed:", current.next.value);
-	current.next = null;
+	console.log("Removed:", current.nextNode.value);
+	current.nextNode = null;
 
 	return current;
 }
@@ -116,11 +116,11 @@ function contains(list, value) {
 
 	let current = list;
 
-	while (current.next !== null) {
+	while (current.nextNode !== null) {
 		if (current.value === value) {
 			return true;
 		}
-		current = current.next;
+		current = current.nextNode;
 	}
 
 	if (current.value === value) {
@@ -138,13 +138,13 @@ function find(list, value) {
 	let i = 0;
 	let current = list;
 
-	while (current.next !== null) {
+	while (current.nextNode !== null) {
 		i += 1;
 
 		if (current.value === value) {
 			return i;
 		}
-		current = current.next;
+		current = current.nextNode;
 	}
 
 	if (current.value === value) {
@@ -165,7 +165,7 @@ function toString(list) {
 
 	while (current !== null) {
 		string += "( " + current.value + " ) -> ";
-		current = current.next;
+		current = current.nextNode;
 	}
 
 	string += null;
