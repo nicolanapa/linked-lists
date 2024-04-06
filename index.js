@@ -1,71 +1,48 @@
 class Node {
-	constructor(value /*, nextNode*/) {
+	constructor(value) {
 		this.value = value;
-		this.nextNode = null;
+		this.next = null;
 
-		console.log("Node:", this.value, this.nextNode);
+		console.log("Node:", this.value);
 	}
 }
 
-/*constructor(value, nextNode) {
-		if (value !== null) {
-			if (nextNode === null) {
-				this.value = value;
-				this.nextNode = nextNode;
-			} else {
-				this.nextNode = nextNode;
-				let temp = this.nextNode;
-				if (temp.nextNode === null || temp.nextNode === undefined) {
-					return new Node(value, (temp.nextNode = null));
-				} else {
-					while (temp !== null || temp !== undefined) {
-						temp = temp.nextNode;
-					}
-					this.value = value;
-					temp.nextNode = null;
+// Appends it at the end of a list
+// Working
+function append(list, value) {
+	console.log("Appending...");
 
-					return new Node(this.value, temp.nextNode);
-				}
-			}
-		} else {
-			this.value = null;
-			this.nextNode = null;
+	let newNode = new Node(value);
+
+	if (list === null) {
+		list = newNode;
+	} else {
+		let last = list;
+		while (last.next !== null) {
+			last = last.next;
 		}
 
-		new Node(this.value, this.nextNode);
-	}*/
+		last.next = newNode;
+	}
 
-// End of list
-/*append(value) {
-		console.log("Appending...");
+	return list;
+}
 
-		//return new Node(value);
-
-		let temp = this.nextNode;
-
-		while (temp !== null || temp !== undefined) {
-			temp = temp.nextNode;
-		}
-
-		if (this.nextNode.nextNode === null || this.nextNode.nextNode === undefined) {
-			return new Node(value, null);
-		} else {
-			temp = temp.nextNode;
-			return new Node(value, temp);
-		}
-	}*/
-
-// Start of list
-function prepend(head, value) {
+// Prepends it at the start of a list
+// Working
+function prepend(list, value) {
 	console.log("Prepending...");
 
 	let newNode = new Node(value);
-	newNode.next = head[0];
-	head[0] = newNode;
+	newNode.next = list;
+
+	return newNode;
 }
 
 function size() {}
 
+// Returns the head of a list
+// Working
 function head(list) {
 	console.log("Returning head...");
 
@@ -76,36 +53,39 @@ function tail() {}
 
 function at(index) {}
 
-//set pop() {}
+function pop() {}
 
 function contains(value) {}
 
 function find(value) {}
 
+// Return the whole list to a string readable format
+// Working
 function toString(list) {
 	console.log("Converting toString...");
 
 	let string = "";
-	let temp = list;
-	while (temp !== null) {
-		string += "( " + temp.value + " ) -> ";
-		temp = temp.nextNode;
+	let current = list;
+	while (current !== null) {
+		string += "( " + current.value + " ) -> ";
+		current = current.next;
 	}
-	//temp = temp.value;
-	/*if (temp === null || temp === undefined) {
-			string += null;
-		} else {
-			string += temp + " (This shouldn't happen!)";
-		}*/
 	string += null;
 	console.log(string);
 }
 
-let prova0 = [null];
-//prova0.append("prova2");
-prepend(prova0, "prova2");
-prepend(prova0, "prova1");
-prepend(prova0, "prova0");
+function test() {
+	let prova0 = null;
+	prova0 = append(prova0, 4);
+	prova0 = prepend(prova0, 3);
+	prova0 = prepend(prova0, 2);
 
-head(prova0[0]);
-toString(prova0[0]);
+	head(prova0);
+	toString(prova0);
+
+	prova0 = append(prova0, 5);
+	head(prova0);
+	toString(prova0);
+}
+
+test();
