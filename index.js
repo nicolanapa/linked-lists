@@ -93,7 +93,21 @@ function at(list, index) {
 	return console.log(current.value);
 }
 
-function pop() {}
+// Removes the last element/node from a list
+// Working
+function pop(list) {
+	console.log("Removing last element...");
+	let current = list;
+
+	while (current.next.next !== null) {
+		current = current.next;
+	}
+
+	console.log("Removed:", current.next.value);
+	current.next = null;
+
+	return current;
+}
 
 function contains(value) {}
 
@@ -121,12 +135,11 @@ function test() {
 	prova0 = append(prova0, "4a");
 	prova0 = prepend(prova0, "3c");
 	prova0 = prepend(prova0, "2b");
-
-	head(prova0);
-	toString(prova0);
-
 	prova0 = append(prova0, "5d");
 	head(prova0);
+
+	toString(prova0);
+	pop(prova0);
 	toString(prova0);
 
 	size(prova0);
