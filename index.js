@@ -7,7 +7,7 @@ class Node {
 
 class LinkedList {
 	constructor() {
-		this.list = null;
+		this.listHead = null;
 	}
 
 	// Appends it at the end of a list
@@ -17,10 +17,10 @@ class LinkedList {
 
 		let new_node = new Node(value);
 
-		if (this.list === null) {
-			this.list = new_node;
+		if (this.listHead === null) {
+			this.listHead = new_node;
 		} else {
-			let last = this.list;
+			let last = this.listHead;
 
 			while (last.nextNode !== null) {
 				last = last.nextNode;
@@ -29,7 +29,7 @@ class LinkedList {
 			last.nextNode = new_node;
 		}
 
-		return this.list;
+		return this.listHead;
 	}
 
 	// Prepends it at the start of a list
@@ -38,10 +38,10 @@ class LinkedList {
 		console.log("Prepending", value);
 
 		let new_node = new Node(value);
-		new_node.nextNode = this.list;
-		this.list = new_node;
+		new_node.nextNode = this.listHead;
+		this.listHead = new_node;
 
-		return this.list;
+		return this.listHead;
 	}
 
 	// Returns the size of a list
@@ -50,7 +50,7 @@ class LinkedList {
 		console.log("Calculating size...");
 
 		let i = 0;
-		let current = this.list;
+		let current = this.listHead;
 
 		while (current !== null) {
 			i += 1;
@@ -63,16 +63,16 @@ class LinkedList {
 	// Returns the head (first node) of a list
 	// Working
 	head() {
-		console.log("Returning head (", this.list.value, ")");
+		console.log("Returning head (", this.listHead.value, ")");
 
-		return this.list.value;
+		return this.listHead.value;
 	}
 
 	// Returns the tail (last node) of a list
 	// Working
 	tail() {
 		console.log("Returning tail...");
-		let current = this.list;
+		let current = this.listHead;
 
 		while (current.nextNode !== null) {
 			current = current.nextNode;
@@ -86,7 +86,7 @@ class LinkedList {
 	at(index) {
 		console.log("Returning your node at", index);
 
-		let current = this.list;
+		let current = this.listHead;
 		for (let i = 0; i < index; i++) {
 			if (current.nextNode === null || current.nextNode === undefined) {
 				return console.log("Overflow!");
@@ -101,7 +101,7 @@ class LinkedList {
 	// Working
 	pop() {
 		console.log("Removing last element...");
-		let current = this.list;
+		let current = this.listHead;
 
 		while (current.nextNode.nextNode !== null) {
 			current = current.nextNode;
@@ -118,7 +118,7 @@ class LinkedList {
 	contains(value) {
 		console.log("Checking if it contains:", value);
 
-		let current = this.list;
+		let current = this.listHead;
 
 		while (current.nextNode !== null) {
 			if (current.value === value) {
@@ -141,7 +141,7 @@ class LinkedList {
 		console.log("Finding:", value);
 
 		let i = -1;
-		let current = this.list;
+		let current = this.listHead;
 
 		while (current.nextNode !== null) {
 			i += 1;
@@ -163,10 +163,10 @@ class LinkedList {
 	// Return the whole list to a string readable format
 	// Working
 	toString() {
-		console.log("Converting toString" /*, JSON.stringify(this.list, null, 4)*/);
+		console.log("Converting toString" /*, JSON.stringify(this.listHead, null, 4)*/);
 
 		let string = "";
-		let current = this.list;
+		let current = this.listHead;
 
 		while (current !== null) {
 			string += "( " + current.value + " ) -> ";
