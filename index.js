@@ -45,6 +45,7 @@ class LinkedList {
 	}
 
 	// Returns the size of a list
+	// 1 to i
 	// Working
 	size() {
 		console.log("Calculating size...");
@@ -82,6 +83,7 @@ class LinkedList {
 	}
 
 	// Returns the node (value) at a specific index of a list
+	// 0 to i
 	// Working
 	at(index) {
 		console.log("Returning your node at", index);
@@ -100,7 +102,7 @@ class LinkedList {
 	// Removes the last element/node from a list
 	// Working
 	pop() {
-		console.log("Removing last element...");
+		console.log("Removing last node...");
 		let current = this.listHead;
 
 		while (current.nextNode.nextNode !== null) {
@@ -178,6 +180,8 @@ class LinkedList {
 	}
 
 	// Inserts a new node with a given value at the given index in a list
+	//	0 to index
+	// Working
 	insertAt(value, index) {
 		console.log("Trying to insert:", value, "in", index);
 
@@ -227,7 +231,42 @@ class LinkedList {
 	}
 
 	// Removes a node at a given index in a list
-	removeAt(index) {}
+	// 0 to index
+	removeAt(index) {
+		console.log("Trying to remove node at index", index);
+
+		if (index === -1) {
+			return this.pop();
+		} else {
+			let iSize = this.size() - 1;
+			console.log(iSize);
+			if (index > iSize) {
+				return this.pop();
+			} else {
+				let current = this.listHead;
+
+				for (let i = 0; i < index - 1; i++) {
+					current = current.nextNode;
+				}
+				//
+				let current2 = current.nextNode;
+				current.nextNode = null;
+
+				for (let i = index - 1; i <= iSize; i++) {
+					current2 = current2;
+				}
+
+				return this.listHead;
+				/*
+
+		console.log("Removed:", current.nextNode.value);
+		current.nextNode = null;
+
+		return current;
+		*/
+			}
+		}
+	}
 }
 
 function test() {
@@ -266,8 +305,12 @@ function test() {
 	prova0.insertAt("6g", 4);
 	console.log(prova0.contains("5d"));
 	console.log();
+	console.log(prova0.toString());
+	console.log();
+	prova0.removeAt(3);
 	console.log(prova0.find("5f"));
 	console.log(prova0.toString());
+	console.log();
 }
 
 test();
