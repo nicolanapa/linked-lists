@@ -193,6 +193,10 @@ class LinkedList {
 			let iSize = this.size() - 1;
 			console.log(iSize);
 			if (index > iSize) {
+				// Just warning the user
+				console.log("You have apparently inputted an index higher than the size of the list");
+				console.log("So we're appending it at the end of the list");
+
 				return this.append(value);
 			} else {
 				let new_node = new Node(value);
@@ -227,6 +231,10 @@ class LinkedList {
 			let iSize = this.size() - 1;
 			console.log(iSize);
 			if (index >= iSize) {
+				// Just warning the user
+				console.log("You have apparently inputted an index higher than the size of the list");
+				console.log("So we're popping/removing the last element.");
+
 				return this.pop();
 			} else {
 				let current = this.listHead;
