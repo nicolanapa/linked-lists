@@ -13,7 +13,7 @@ class LinkedList {
 	// Appends it at the end of a list
 	// Working
 	append(value) {
-		console.log("Appending", value);
+		console.log("Appending", "'" + value + "'", "to the end");
 
 		let new_node = new Node(value);
 
@@ -35,7 +35,7 @@ class LinkedList {
 	// Prepends it at the start of a list
 	// Working
 	prepend(value) {
-		console.log("Prepending", value);
+		console.log("Prepending", "'" + value + "'", "to the start");
 
 		let new_node = new Node(value);
 		new_node.nextNode = this.listHead;
@@ -176,15 +176,67 @@ class LinkedList {
 		string += null;
 		return string;
 	}
+
+	// Inserts a new node with a given value at the given index in a list
+	insertAt(value, index) {
+		console.log("Trying to insert:", value, "in", index);
+
+		if (index === 0) {
+			return this.prepend(value);
+		} else if (index === -1) {
+			return this.append(value);
+		} else {
+			let iSize = this.size() - 1;
+			console.log(iSize);
+			if (index > iSize) {
+				return this.append(value);
+			} else {
+				let new_node = new Node(value);
+
+				let current = this.listHead;
+
+				for (let i = 0; i < index - 1; i++) {
+					current = current.nextNode;
+				}
+
+				let current2 = current.nextNode;
+				current.nextNode = new_node;
+
+				for (let i = index - 1; i <= iSize; i++) {
+					new_node.nextNode = current2;
+				}
+
+				return this.listHead;
+			}
+			/*let new_node = new Node(value);
+
+		if (this.listHead === null) {
+			this.listHead = new_node;
+		} else {
+			let last = this.listHead;
+
+			while (last.nextNode !== null) {
+				last = last.nextNode;
+			}
+
+			last.nextNode = new_node;
+		}
+
+		return this.listHead;*/
+		}
+	}
+
+	// Removes a node at a given index in a list
+	removeAt(index) {}
 }
 
 function test() {
 	let prova0 = new LinkedList();
 
 	prova0.append("4a");
-	prova0.prepend("3c");
-	prova0.prepend("2b");
-	prova0.append("5d");
+	prova0.prepend("3b");
+	prova0.prepend("2c");
+	prova0.append("5d"); // Removed
 	console.log(prova0.head());
 	console.log();
 
@@ -196,7 +248,7 @@ function test() {
 	console.log(prova0.find("5d"));
 	console.log();
 
-	prova0.pop();
+	prova0.pop(); // Removed "5d"
 	console.log(prova0.toString());
 	console.log();
 
@@ -208,9 +260,14 @@ function test() {
 
 	console.log(prova0.at(1));
 	console.log();
+
+	prova0.append("7e");
+	prova0.insertAt("5f", 3);
+	prova0.insertAt("6g", 4);
 	console.log(prova0.contains("5d"));
 	console.log();
-	console.log(prova0.find("5d"));
+	console.log(prova0.find("5f"));
+	console.log(prova0.toString());
 }
 
 test();
