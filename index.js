@@ -2,208 +2,215 @@ class Node {
 	constructor(value) {
 		this.value = value;
 		this.nextNode = null;
-
-		//console.log("Node:", this.value);
 	}
 }
 
-// Appends it at the end of a list
-// Working
-function append(list, value) {
-	console.log("Appending", value);
+class LinkedList {
+	constructor() {
+		this.list = null;
+	}
 
-	let new_node = new Node(value);
+	// Appends it at the end of a list
+	// Working
+	append(value) {
+		console.log("Appending", value);
 
-	if (list === null) {
-		list = new_node;
-	} else {
-		let last = list;
+		let new_node = new Node(value);
 
-		while (last.nextNode !== null) {
-			last = last.nextNode;
+		if (this.list === null) {
+			this.list = new_node;
+		} else {
+			let last = this.list;
+
+			while (last.nextNode !== null) {
+				last = last.nextNode;
+			}
+
+			last.nextNode = new_node;
 		}
 
-		last.nextNode = new_node;
+		return this.list;
 	}
 
-	return list;
-}
+	// Prepends it at the start of a list
+	// Working
+	prepend(value) {
+		console.log("Prepending", value);
 
-// Prepends it at the start of a list
-// Working
-function prepend(list, value) {
-	console.log("Prepending", value);
+		let new_node = new Node(value);
+		new_node.nextNode = this.list;
+		this.list = new_node;
 
-	let new_node = new Node(value);
-	new_node.nextNode = list;
-
-	return new_node;
-}
-
-// Returns the size of a list
-// Working
-function size(list) {
-	console.log("Calculating size...");
-
-	let i = 0;
-	let current = list;
-
-	while (current !== null) {
-		i += 1;
-		current = current.nextNode;
+		return this.list;
 	}
 
-	return i;
-}
+	// Returns the size of a list
+	// Working
+	size() {
+		console.log("Calculating size...");
 
-// Returns the head (first node) of a list
-// Working
-function head(list) {
-	console.log("Returning head (", list.value, ")");
+		let i = 0;
+		let current = this.list;
 
-	return list.value;
-}
-
-// Returns the tail (last node) of a list
-// Working
-function tail(list) {
-	console.log("Returning tail...");
-	let current = list;
-
-	while (current.nextNode !== null) {
-		current = current.nextNode;
-	}
-
-	return current.value;
-}
-
-// Returns the node (value) at a specific index of a list
-// Working
-function at(list, index) {
-	console.log("Returning your node at", index);
-
-	let current = list;
-	for (let i = 0; i < index; i++) {
-		if (current.nextNode === null || current.nextNode === undefined) {
-			return console.log("Overflow!");
+		while (current !== null) {
+			i += 1;
+			current = current.nextNode;
 		}
-		current = current.nextNode;
+
+		return i;
 	}
 
-	return current.value;
-}
+	// Returns the head (first node) of a list
+	// Working
+	head() {
+		console.log("Returning head (", this.list.value, ")");
 
-// Removes the last element/node from a list
-// Working
-function pop(list) {
-	console.log("Removing last element...");
-	let current = list;
-
-	while (current.nextNode.nextNode !== null) {
-		current = current.nextNode;
+		return this.list.value;
 	}
 
-	console.log("Removed:", current.nextNode.value);
-	current.nextNode = null;
+	// Returns the tail (last node) of a list
+	// Working
+	tail() {
+		console.log("Returning tail...");
+		let current = this.list;
 
-	return current;
-}
+		while (current.nextNode !== null) {
+			current = current.nextNode;
+		}
 
-// Returns true if a list contains a given value, otherwise false
-// Working
-function contains(list, value) {
-	console.log("Checking if it contains:", value);
+		return current.value;
+	}
 
-	let current = list;
+	// Returns the node (value) at a specific index of a list
+	// Working
+	at(index) {
+		console.log("Returning your node at", index);
 
-	while (current.nextNode !== null) {
+		let current = this.list;
+		for (let i = 0; i < index; i++) {
+			if (current.nextNode === null || current.nextNode === undefined) {
+				return console.log("Overflow!");
+			}
+			current = current.nextNode;
+		}
+
+		return current.value;
+	}
+
+	// Removes the last element/node from a list
+	// Working
+	pop() {
+		console.log("Removing last element...");
+		let current = this.list;
+
+		while (current.nextNode.nextNode !== null) {
+			current = current.nextNode;
+		}
+
+		console.log("Removed:", current.nextNode.value);
+		current.nextNode = null;
+
+		return current;
+	}
+
+	// Returns true if a list contains a given value, otherwise false
+	// Working
+	contains(value) {
+		console.log("Checking if it contains:", value);
+
+		let current = this.list;
+
+		while (current.nextNode !== null) {
+			if (current.value === value) {
+				return true;
+			}
+			current = current.nextNode;
+		}
+
 		if (current.value === value) {
 			return true;
+		} else {
+			return false;
 		}
-		current = current.nextNode;
 	}
 
-	if (current.value === value) {
-		return true;
-	} else {
-		return false;
-	}
-}
+	// Returns the index of the node containing a given value, otherwise null
+	// 0 to i
+	// Working
+	find(value) {
+		console.log("Finding:", value);
 
-// Returns the index of the node containing a given value, otherwise null
-// Working
-function find(list, value) {
-	console.log("Finding:", value);
+		let i = -1;
+		let current = this.list;
 
-	let i = 0;
-	let current = list;
+		while (current.nextNode !== null) {
+			i += 1;
 
-	while (current.nextNode !== null) {
-		i += 1;
+			if (current.value === value) {
+				return i;
+			}
+			current = current.nextNode;
+		}
 
 		if (current.value === value) {
+			i += 1;
 			return i;
+		} else {
+			return null;
 		}
-		current = current.nextNode;
 	}
 
-	if (current.value === value) {
-		i += 1;
-		return i;
-	} else {
-		return null;
+	// Return the whole list to a string readable format
+	// Working
+	toString() {
+		console.log("Converting toString" /*, JSON.stringify(this.list, null, 4)*/);
+
+		let string = "";
+		let current = this.list;
+
+		while (current !== null) {
+			string += "( " + current.value + " ) -> ";
+			current = current.nextNode;
+		}
+
+		string += null;
+		return string;
 	}
-}
-
-// Return the whole list to a string readable format
-// Working
-function toString(list) {
-	console.log("Converting toString" /*, JSON.stringify(list, null, 4)*/);
-
-	let string = "";
-	let current = list;
-
-	while (current !== null) {
-		string += "( " + current.value + " ) -> ";
-		current = current.nextNode;
-	}
-
-	string += null;
-	return string;
 }
 
 function test() {
-	let prova0 = null;
-	prova0 = append(prova0, "4a");
-	prova0 = prepend(prova0, "3c");
-	prova0 = prepend(prova0, "2b");
-	prova0 = append(prova0, "5d");
-	console.log(head(prova0));
+	let prova0 = new LinkedList();
+
+	prova0.append("4a");
+	prova0.prepend("3c");
+	prova0.prepend("2b");
+	prova0.append("5d");
+	console.log(prova0.head());
 	console.log();
 
-	console.log(toString(prova0));
+	console.log(prova0.toString());
 	console.log();
 
-	console.log(contains(prova0, "5d"));
+	console.log(prova0.contains("5d"));
 	console.log();
-	console.log(find(prova0, "5d"));
-	console.log();
-
-	pop(prova0);
-	console.log(toString(prova0));
+	console.log(prova0.find("5d"));
 	console.log();
 
-	console.log(size(prova0));
+	prova0.pop();
+	console.log(prova0.toString());
 	console.log();
 
-	console.log(tail(prova0));
+	console.log(prova0.size());
 	console.log();
 
-	console.log(at(prova0, 1));
+	console.log(prova0.tail());
 	console.log();
-	console.log(contains(prova0, "5d"));
+
+	console.log(prova0.at(1));
 	console.log();
-	console.log(find(prova0, "5d"));
+	console.log(prova0.contains("5d"));
+	console.log();
+	console.log(prova0.find("5d"));
 }
 
 test();
