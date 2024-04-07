@@ -212,26 +212,12 @@ class LinkedList {
 
 				return this.listHead;
 			}
-			/*let new_node = new Node(value);
-
-		if (this.listHead === null) {
-			this.listHead = new_node;
-		} else {
-			let last = this.listHead;
-
-			while (last.nextNode !== null) {
-				last = last.nextNode;
-			}
-
-			last.nextNode = new_node;
-		}
-
-		return this.listHead;*/
 		}
 	}
 
 	// Removes a node at a given index in a list
 	// 0 to index
+	// Working
 	removeAt(index) {
 		console.log("Trying to remove node at index", index);
 
@@ -240,7 +226,7 @@ class LinkedList {
 		} else {
 			let iSize = this.size() - 1;
 			console.log(iSize);
-			if (index > iSize) {
+			if (index >= iSize) {
 				return this.pop();
 			} else {
 				let current = this.listHead;
@@ -248,22 +234,10 @@ class LinkedList {
 				for (let i = 0; i < index - 1; i++) {
 					current = current.nextNode;
 				}
-				//
-				let current2 = current.nextNode;
-				current.nextNode = null;
 
-				for (let i = index - 1; i <= iSize; i++) {
-					current2 = current2;
-				}
+				current.nextNode = current.nextNode.nextNode;
 
 				return this.listHead;
-				/*
-
-		console.log("Removed:", current.nextNode.value);
-		current.nextNode = null;
-
-		return current;
-		*/
 			}
 		}
 	}
@@ -310,6 +284,7 @@ function test() {
 	prova0.removeAt(3);
 	console.log(prova0.find("5f"));
 	console.log(prova0.toString());
+	console.log(prova0.size());
 	console.log();
 }
 
