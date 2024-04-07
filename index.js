@@ -261,7 +261,7 @@ function test() {
 	console.log(prova0.find("5d"));
 	console.log();
 
-	prova0.pop(); // Removed "5d"
+	prova0.pop(); // Remove "5d"
 	console.log(prova0.toString());
 	console.log();
 
